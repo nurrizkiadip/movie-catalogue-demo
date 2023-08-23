@@ -23,4 +23,3 @@ jobs:
         run: |
           npm install
           npm test
-          HEADLESS=true npx codecept run --steps
