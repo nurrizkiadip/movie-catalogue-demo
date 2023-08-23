@@ -24,3 +24,6 @@ jobs:
           npm install
           npm test
           npm run serve; HEADLESS=true npx codecept run --steps
+        env:
+          CI: true
+          API_KEY_TMDB: ${{ secrets.API_KEY_TMDB }}

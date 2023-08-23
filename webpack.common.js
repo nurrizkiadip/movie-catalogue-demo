@@ -1,8 +1,15 @@
 const path = require('path');
+// const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+// Import environment variables
+require('dotenv').config({
+  path: path.resolve('.env'),
+});
 
 module.exports = {
   entry: {
@@ -29,6 +36,16 @@ module.exports = {
     ],
   },
   plugins: [
+    // new Dotenv({
+    //   path: path.resolve(__dirname, '.env'),
+    //   systemvars: true,
+    //   safe: true,
+    // }),
+
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
+    }),
+
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',

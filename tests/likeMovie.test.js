@@ -2,6 +2,7 @@ import { spyOn } from 'jest-mock';
 import LikeButtonPresenter from '../src/scripts/utils/like-button-presenter';
 import FavoriteMovieIdb from '../src/scripts/data/favorite-movie-idb';
 import * as TestFactories from './helpers/testFactories';
+import CONFIG from '../src/scripts/globals/config';
 
 describe('Liking A Movie', () => {
   const addLikeButtonContainer = () => {
@@ -15,6 +16,8 @@ describe('Liking A Movie', () => {
   });
 
   it('should show the like button when the movie has not been liked before', async () => {
+    console.log('API_KEY', CONFIG.KEY);
+
     await TestFactories.createLikeButtonPresenterWithMovie({ id: 1 });
 
     expect(document.querySelector('[aria-label="like this movie"]')).toBeTruthy();
